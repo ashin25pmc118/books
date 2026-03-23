@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h1>{{ action }} Book</h1>
+  <form method="post">
+    <div class="mb-3">
+      <label class="form-label">Title</label>
+      <input name="title" class="form-control" value="{{ book.title if book else '' }}" required>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Author</label>
+      <input name="author" class="form-control" value="{{ book.author if book else '' }}">
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Description</label>
+      <textarea name="description" class="form-control" rows="4">{{ book.description if book else '' }}</textarea>
+    </div>
+    <button class="btn btn-primary" type="submit">{{ action }}</button>
+    <a class="btn btn-secondary" href="/">Cancel</a>
+  </form>
+{% endblock %}

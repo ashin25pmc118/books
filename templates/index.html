@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h1>Books</h1>
+  {% if books %}
+    <table class="table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Title</th>
+          <th>Author</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for b in books %}
+        <tr>
+          <td>{{ b.id }}</td>
+          <td>{{ b.title }}</td>
+          <td>{{ b.author or '' }}</td>
+          <td class="text-end">
+            <a class="btn btn-sm btn-outline-secondary" href="/edit/{{ b.id }}">Edit</a>
+            <form action="/delete/{{ b.id }}" method="post" style="display:inline-block;">
+              <button class="btn btn-sm btn-danger" type="submit" onclick="return confirm('Delete this book?')">Delete</button>
+            </form>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p>No books yet. <a href="/create">Add one</a>.</p>
+  {% endif %}
+{% endblock %}
